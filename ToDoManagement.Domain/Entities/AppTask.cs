@@ -2,7 +2,7 @@
 
 namespace ToDoManagement.Domain.Entities;
 
-public class ToDo
+public class AppTask
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; }
@@ -12,7 +12,7 @@ public class ToDo
     public string? AttachmentUrl { get; private set; }
     public Guid CategoryId { get; private set; }
 
-    public ToDo(string name, Guid categoryId, string? notes = null, DateTime? expiresAt = null, string? attachmentUrl = null)
+    public AppTask(string name, Guid categoryId, string? notes = null, DateTime? expiresAt = null, string? attachmentUrl = null)
     {
         if (string.IsNullOrWhiteSpace(name))
         {

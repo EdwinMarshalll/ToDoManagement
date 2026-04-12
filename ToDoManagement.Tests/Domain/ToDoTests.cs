@@ -15,7 +15,7 @@ public class ToDoTests
         // Act & Assert
         Assert.Throws<DomainValidationException>(() =>
         {
-            ToDo todo = new(name, categoryId);
+            AppTask todo = new(name, categoryId);
         });
     }
 
@@ -29,7 +29,7 @@ public class ToDoTests
         // Act & Assert
         Assert.Throws<DomainValidationException>(() =>
         {
-            ToDo todo = new(name, categoryId);
+            AppTask todo = new(name, categoryId);
         });
     }
 
@@ -41,7 +41,7 @@ public class ToDoTests
         Guid categoryId = Guid.NewGuid();
 
         // Act
-        ToDo todo = new(name, categoryId);
+        AppTask todo = new(name, categoryId);
 
         // Assert
         Assert.NotNull(todo);
@@ -65,7 +65,7 @@ public class ToDoTests
         string attachmentUrl = "https://dominio.com/file1";
 
         // Act
-        ToDo todo = new(name, categoryId, notes, expiresAt, attachmentUrl);
+        AppTask todo = new(name, categoryId, notes, expiresAt, attachmentUrl);
 
         // Assert
         Assert.NotNull(todo);
@@ -81,7 +81,7 @@ public class ToDoTests
     [Fact]
     public void Complete_MarksAsCompleted()
     {
-        ToDo todo = new("Comprar algo", Guid.NewGuid());
+        AppTask todo = new("Comprar algo", Guid.NewGuid());
         todo.Complete();
 
         Assert.True(todo.IsCompleted);
@@ -90,7 +90,7 @@ public class ToDoTests
     [Fact]
     public void Uncomplete_MarksAsUncompleted()
     {
-        ToDo todo = new("Comprar algo", Guid.NewGuid());
+        AppTask todo = new("Comprar algo", Guid.NewGuid());
         todo.Complete();
 
         todo.Uncomplete();
