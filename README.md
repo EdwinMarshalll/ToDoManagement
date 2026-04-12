@@ -12,14 +12,16 @@ Este administrador consta de las iguientes funciones
 ---
 ## Modelos
 ### Tarea
+- Id
 - Nombre
 - Notas
 - Fecha de vencimiento
-- Adjunto
-- Completada
-- Categoria
+- AdjuntoUrl
+- EsCompletada
+- CategoriaId
 
 ### Categoria
+- Id
 - Nombre
 
 ---
