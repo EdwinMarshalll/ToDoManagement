@@ -1,4 +1,5 @@
-﻿using ToDoManagement.Application.Interfaces.Repositories;
+﻿using ToDoManagement.Application.Interfaces.Persistence;
+using ToDoManagement.Application.Interfaces.Repositories;
 using ToDoManagement.Domain.Entities;
 
 namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
@@ -6,16 +7,27 @@ namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
 public class UseCaseCreateCategory
 {
     private readonly IRepositoryCategory _repository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public UseCaseCreateCategory(IRepositoryCategory repository)
+    public UseCaseCreateCategory(IRepositoryCategory repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<Guid> Handle(CommandCreateCategory command)
     {
-        Category category = new (command.Name) ;
-        var response = await _repository.AddAsync(category);
-        return response.Id ;
+        Category category = new(command.Name);
+        try
+        {
+            var response = await _repository.AddAsync(category);
+            await _unitOfWork.SaveAsync();
+            return response.Id;
+        }
+        catch (Exception)
+        {
+            await _unitOfWork.RollbackAsync();
+            throw;
+        }
     }
 }
