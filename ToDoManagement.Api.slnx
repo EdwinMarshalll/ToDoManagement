@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/Core/">
+    <Project Path="ToDoManagement.Domain/ToDoManagement.Domain.csproj" />
+  </Folder>
   <Project Path="ToDoManagement.Api/ToDoManagement.Api.csproj" />
 </Solution>
