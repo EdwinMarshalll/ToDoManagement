@@ -2,5 +2,8 @@
   <Folder Name="/Core/">
     <Project Path="ToDoManagement.Domain/ToDoManagement.Domain.csproj" />
   </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="ToDoManagement.Tests/ToDoManagement.Tests.csproj" />
+  </Folder>
   <Project Path="ToDoManagement.Api/ToDoManagement.Api.csproj" />
 </Solution>

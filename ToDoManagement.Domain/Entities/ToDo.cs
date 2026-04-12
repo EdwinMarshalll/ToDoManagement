@@ -2,7 +2,7 @@
 
 namespace ToDoManagement.Domain.Entities;
 
-public class Task
+public class ToDo
 {
     public Guid Id { get; private set; }
     public string Name { get; private set; }
@@ -12,7 +12,7 @@ public class Task
     public string? AttachmentUrl { get; private set; }
     public Guid CategoryId { get; private set; }
 
-    public Task(string name, Guid categoryId, string? notes = null, DateTime? expiresAt = null, string? attachmentUrl = null)
+    public ToDo(string name, Guid categoryId, string? notes = null, DateTime? expiresAt = null, string? attachmentUrl = null)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
@@ -27,5 +27,15 @@ public class Task
         Notes = notes;
         ExpiresAt = expiresAt;
         AttachmentUrl = attachmentUrl;
+    }
+
+    public void Complete()
+    {
+        IsCompleted = true;
+    }
+
+    public void Uncomplete()
+    {
+        IsCompleted = false;
     }
 }
