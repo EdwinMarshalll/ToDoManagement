@@ -2,11 +2,12 @@
 using ToDoManagement.Application.Exceptions;
 using ToDoManagement.Application.Interfaces.Persistence;
 using ToDoManagement.Application.Interfaces.Repositories;
+using ToDoManagement.Application.Utilities.Mediator;
 using ToDoManagement.Domain.Entities;
 
 namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
 
-public class UseCaseCreateCategory
+public class UseCaseCreateCategory : IRequestHandler<CreateCategoryCommand, Guid>
 {
     private readonly IRepositoryCategory _repository;
     private readonly IUnitOfWork _unitOfWork;
