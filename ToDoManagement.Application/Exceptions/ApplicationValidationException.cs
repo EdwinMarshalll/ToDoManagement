@@ -2,11 +2,11 @@
 
 namespace ToDoManagement.Application.Exceptions;
 
-public class ValidationException : Exception
+public class ApplicationValidationException : Exception
 {
     public List<string> ValidationErrors { get; set; } = [];
 
-    public ValidationException(ValidationResult validationResult)
+    public ApplicationValidationException(ValidationResult validationResult)
     {
         foreach (var validationError in validationResult.Errors)
         {

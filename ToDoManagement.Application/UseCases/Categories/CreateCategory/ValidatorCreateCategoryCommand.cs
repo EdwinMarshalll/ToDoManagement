@@ -2,9 +2,9 @@
 
 namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
 
-public class ValidatorCommandCreateCategory: AbstractValidator<CommandCreateCategory>
+public class ValidatorCreateCategoryCommand: AbstractValidator<CreateCategoryCommand>
 {
-    public ValidatorCommandCreateCategory()
+    public ValidatorCreateCategoryCommand()
     {
         RuleFor(prop => prop.Name)
             .NotEmpty().WithMessage("El campo {PropertyName} es querido");

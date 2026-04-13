@@ -1,4 +1,5 @@
-﻿using ToDoManagement.Application.Exceptions;
+﻿using FluentValidation;
+using ToDoManagement.Application.Exceptions;
 using ToDoManagement.Application.Interfaces.Persistence;
 using ToDoManagement.Application.Interfaces.Repositories;
 using ToDoManagement.Domain.Entities;
@@ -9,20 +10,20 @@ public class UseCaseCreateCategory
 {
     private readonly IRepositoryCategory _repository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ValidatorCommandCreateCategory _validator;
+    private readonly IValidator<CreateCategoryCommand> _validator;
 
-    public UseCaseCreateCategory(IRepositoryCategory repository, IUnitOfWork unitOfWork, ValidatorCommandCreateCategory validator)
+    public UseCaseCreateCategory(IRepositoryCategory repository, IUnitOfWork unitOfWork, IValidator<CreateCategoryCommand> validator)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
         _validator = validator;
     }
 
-    public async Task<Guid> Handle(CommandCreateCategory command)
+    public async Task<Guid> Handle(CreateCategoryCommand command)
     {
         var validationResult = await _validator.ValidateAsync(command);
         if (!validationResult.IsValid) {
-            throw new ValidationException(validationResult);
+            throw new ApplicationValidationException(validationResult);
         }
 
         Category category = new(command.Name);
