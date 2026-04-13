@@ -1,6 +1,8 @@
-﻿namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
+﻿using ToDoManagement.Application.Utilities.Mediator;
 
-public class CreateCategoryCommand
+namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
+
+public class CreateCategoryCommand : IRequest<Guid>
 {
     public required string Name { get; set; }
 }
