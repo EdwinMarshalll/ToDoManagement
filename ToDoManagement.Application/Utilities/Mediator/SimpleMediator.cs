@@ -22,7 +22,7 @@ public class SimpleMediator : IMediator
             throw new MediatorException($"No se ha encontrado un handler para {request.GetType().Name}");
         }
 
-        var method = useCaseType.GetMethod("handle")!;
+        var method = useCaseType.GetMethod("Handle")!;
         return await (Task<TResponse>)method.Invoke(useCase, new object[] { request })!;
     }
 }
