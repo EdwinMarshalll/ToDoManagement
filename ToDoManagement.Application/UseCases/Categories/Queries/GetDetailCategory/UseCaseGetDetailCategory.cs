@@ -22,7 +22,6 @@ public class UseCaseGetDetailCategory : IRequestHandler<GetDetailCategoryQuery, 
             throw new AppNotFoundException();
         }
 
-        var dto = new DetailCategoryDTO { Id = category.Id, Name = category.Name };
-        return dto;
+        return category.ToDto();
     }
 }
