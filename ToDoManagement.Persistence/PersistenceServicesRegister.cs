@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ToDoManagement.Application.Interfaces.Repositories;
+using ToDoManagement.Persistence.Repositories;
 
 namespace ToDoManagement.Persistence;
 
@@ -11,6 +13,8 @@ public static class PersistenceServicesRegister
         {
             options.UseSqlServer("name=ToDoManagementConnectionString");
         });
+
+        services.AddScoped<IRepositoryCategory, RepositoryCategory>();
 
         return services;
     }
