@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ToDoManagement.Application.Interfaces.Persistence;
 using ToDoManagement.Application.Interfaces.Repositories;
 using ToDoManagement.Persistence.Repositories;
+using ToDoManagement.Persistence.UnitOfWorks;
 
 namespace ToDoManagement.Persistence;
 
@@ -15,6 +17,7 @@ public static class PersistenceServicesRegister
         });
 
         services.AddScoped<IRepositoryCategory, RepositoryCategory>();
+        services.AddScoped<IUnitOfWork, UnitOfWorkEFCore>();
 
         return services;
     }
