@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
 using ToDoManagement.Api.DTOs.Categories;
 using ToDoManagement.Application.UseCases.Categories.CreateCategory;
 using ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
@@ -25,7 +24,6 @@ public class CategoriesController : ControllerBase
         var result = await _mediator.Send(query);
         return Ok(result);
     }
-    
 
     [HttpPost]
     public async Task<IActionResult> Post(CreateCategoryDto createCategoryDto)

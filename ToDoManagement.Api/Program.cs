@@ -1,3 +1,4 @@
+using ToDoManagement.Api.Middlewares;
 using ToDoManagement.Application;
 using ToDoManagement.Persistence;
 
@@ -19,6 +20,8 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.UseManagerExceptionsMiddleware();
 
 app.UseHttpsRedirection();
 
