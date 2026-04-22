@@ -2,7 +2,7 @@
 using NSubstitute.ReturnsExtensions;
 using ToDoManagement.Application.Exceptions;
 using ToDoManagement.Application.Interfaces.Repositories;
-using ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
+using ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 using ToDoManagement.Domain.Entities;
 
 namespace ToDoManagement.Tests.Application.UseCases.Categories;
@@ -10,12 +10,12 @@ namespace ToDoManagement.Tests.Application.UseCases.Categories;
 public class UseCaseGetDetailCategoryTests
 {
     private IRepositoryCategory _repository;
-    private UseCaseGetDetailCategory _useCase;
+    private GetCategoryDetailUseCase _useCase;
 
     public UseCaseGetDetailCategoryTests()
     {
         _repository = Substitute.For<IRepositoryCategory>();
-        _useCase = new UseCaseGetDetailCategory(_repository);
+        _useCase = new GetCategoryDetailUseCase(_repository);
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public class UseCaseGetDetailCategoryTests
     {
         // Arrange
         var category = new Category("Principal");
-        var query = new GetDetailCategoryQuery() { Id = category.Id };
+        var query = new GetCategoryDetailQuery() { Id = category.Id };
 
         _repository.GetByIdAsync(category.Id).Returns(category);
 
@@ -32,7 +32,7 @@ public class UseCaseGetDetailCategoryTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.IsType<DetailCategoryDTO>(result);
+        Assert.IsType<CategoryDetailDto>(result);
         Assert.Equal(category.Id, result.Id);
         Assert.Equal("Principal", result.Name);
     }
@@ -42,7 +42,7 @@ public class UseCaseGetDetailCategoryTests
     {
         // Arrange
         var id = Guid.NewGuid();
-        var query = new GetDetailCategoryQuery() { Id = id};
+        var query = new GetCategoryDetailQuery() { Id = id};
 
         _repository.GetByIdAsync(id).ReturnsNull();
 

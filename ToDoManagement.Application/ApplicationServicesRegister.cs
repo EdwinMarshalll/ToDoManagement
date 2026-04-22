@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ToDoManagement.Application.UseCases.Categories.CreateCategory;
-using ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
+using ToDoManagement.Application.UseCases.Categories.Queries.GetCategories;
+using ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 using ToDoManagement.Application.Utilities.Mediator;
 
 namespace ToDoManagement.Application;
@@ -11,11 +12,9 @@ public static class ApplicationServicesRegister
     {
         services.AddScoped<IMediator, SimpleMediator>();
 
-        services.AddScoped<IRequestHandler<CreateCategoryCommand, Guid>, 
-            UseCaseCreateCategory>();
-
-        services.AddScoped<IRequestHandler<GetDetailCategoryQuery, DetailCategoryDTO>,
-            UseCaseGetDetailCategory>();
+        services.AddScoped<IRequestHandler<CreateCategoryCommand, Guid>, UseCaseCreateCategory>();
+        services.AddScoped<IRequestHandler<GetCategoryDetailQuery, CategoryDetailDto>, GetCategoryDetailUseCase>();
+        services.AddScoped<IRequestHandler<GetCategoriesQuery,  List<CategoryListItemDto>>, GetCategoriesUseCase>();
 
         return services;
     }

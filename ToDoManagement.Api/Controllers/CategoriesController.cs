@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoManagement.Api.DTOs.Categories;
 using ToDoManagement.Application.UseCases.Categories.CreateCategory;
-using ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
+using ToDoManagement.Application.UseCases.Categories.Queries.GetCategories;
+using ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 using ToDoManagement.Application.Utilities.Mediator;
 
 namespace ToDoManagement.Api.Controllers;
@@ -17,10 +18,18 @@ public class CategoriesController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<DetailCategoryDTO>> Get(Guid id)
+    [HttpGet]
+    public async Task<ActionResult<List<CategoryListItemDto>>> Get()
     {
-        var query = new GetDetailCategoryQuery() { Id = id};
+        var query = new GetCategoriesQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<CategoryDetailDto>> Get(Guid id)
+    {
+        var query = new GetCategoryDetailQuery() { Id = id};
         var result = await _mediator.Send(query);
         return Ok(result);
     }

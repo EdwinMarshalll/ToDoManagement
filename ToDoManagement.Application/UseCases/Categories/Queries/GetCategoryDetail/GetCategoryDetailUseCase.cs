@@ -2,18 +2,18 @@
 using ToDoManagement.Application.Interfaces.Repositories;
 using ToDoManagement.Application.Utilities.Mediator;
 
-namespace ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
+namespace ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 
-public class UseCaseGetDetailCategory : IRequestHandler<GetDetailCategoryQuery, DetailCategoryDTO>
+public class GetCategoryDetailUseCase : IRequestHandler<GetCategoryDetailQuery, CategoryDetailDto>
 {
     private readonly IRepositoryCategory _repository;
 
-    public UseCaseGetDetailCategory(IRepositoryCategory repository)
+    public GetCategoryDetailUseCase(IRepositoryCategory repository)
     {
         _repository = repository;
     }
 
-    public async Task<DetailCategoryDTO> Handle(GetDetailCategoryQuery request)
+    public async Task<CategoryDetailDto> Handle(GetCategoryDetailQuery request)
     {
         var category = await _repository.GetByIdAsync(request.Id);
 

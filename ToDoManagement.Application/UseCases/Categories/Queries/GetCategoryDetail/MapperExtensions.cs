@@ -1,12 +1,12 @@
 ﻿using ToDoManagement.Domain.Entities;
 
-namespace ToDoManagement.Application.UseCases.Categories.Queries.GetDetailCategory;
+namespace ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 
 public static class MapperExtensions
 {
-    public static DetailCategoryDTO ToDto(this Category category)
+    public static CategoryDetailDto ToDto(this Category category)
     {
-        var dto = new DetailCategoryDTO { 
+        var dto = new CategoryDetailDto { 
             Id = category.Id, 
             Name = category.Name 
         };
