@@ -11,12 +11,12 @@ public class UnitOfWorkEFCore : IUnitOfWork
         _context = context;
     }
 
-    public async Task RollbackAsync()
+    public async Task SaveAsync()
     {
         await _context.SaveChangesAsync();
     }
 
-    public Task SaveAsync()
+    public Task RollbackAsync()
     {
         // In EFCore rollback is implicit
         return Task.CompletedTask;

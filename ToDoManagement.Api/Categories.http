@@ -1,6 +1,6 @@
 @ToDoManagement.Api_HostAddress = http://localhost:5241/api/categories
 
-GET {{ToDoManagement.Api_HostAddress}}
+GET {{ToDoManagement.Api_HostAddress}}/019DB728-AA00-7C77-824C-32DEEC58DD7d
 Accept: application/json
 
 ###
