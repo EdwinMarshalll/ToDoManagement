@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ToDoManagement.Application\ToDoManagement.Application.csproj" />
     <ProjectReference Include="..\ToDoManagement.Persistence\ToDoManagement.Persistence.csproj" />
   </ItemGroup>

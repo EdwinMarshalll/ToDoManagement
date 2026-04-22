@@ -1,0 +1,13 @@
+@ToDoManagement.Api_HostAddress = http://localhost:5241/api/categories
+
+GET {{ToDoManagement.Api_HostAddress}}
+Accept: application/json
+
+###
+
+POST {{ToDoManagement.Api_HostAddress}}
+Content-Type: application/json
+
+{
+  "Name" : "Principal"
+}
