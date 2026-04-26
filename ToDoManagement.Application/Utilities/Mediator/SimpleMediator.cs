@@ -15,6 +15,38 @@ public class SimpleMediator : IMediator
 
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
     {
+        await DoValidations(request);
+
+        var useCaseType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
+        var useCase = _serviceProvider.GetService(useCaseType);
+
+        if (useCase is null)
+        {
+            throw new MediatorException($"No se ha encontrado un handler para {request.GetType().Name}");
+        }
+
+        var method = useCaseType.GetMethod("Handle")!;
+        return await (Task<TResponse>)method.Invoke(useCase, new object[] { request })!;
+    }
+
+    public async Task Send(IRequest request)
+    {
+        await DoValidations(request);
+
+        var useCaseType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
+        var useCase = _serviceProvider.GetService(useCaseType);
+
+        if (useCase is null)
+        {
+            throw new MediatorException($"No se ha encontrado un handler para {request.GetType().Name}");
+        }
+
+        var method = useCaseType.GetMethod("Handle")!;
+        await (Task)method.Invoke(useCase, new object[] { request })!;
+    }
+
+    private async Task DoValidations(object request)
+    {
         var validatorType = typeof(IValidator<>).MakeGenericType(request.GetType());
         var validator = _serviceProvider.GetService(validatorType);
 
@@ -33,16 +65,5 @@ public class SimpleMediator : IMediator
                 throw new ApplicationValidationException(validationResult);
             }
         }
-
-        var useCaseType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
-        var useCase = _serviceProvider.GetService(useCaseType);
-
-        if (useCase is null)
-        {
-            throw new MediatorException($"No se ha encontrado un handler para {request.GetType().Name}");
-        }
-
-        var method = useCaseType.GetMethod("Handle")!;
-        return await (Task<TResponse>)method.Invoke(useCase, new object[] { request })!;
     }
 }

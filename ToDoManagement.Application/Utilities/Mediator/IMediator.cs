@@ -16,4 +16,6 @@ public interface IMediator
     /// <param name="request">La solicitud que se va a ejecutar.</param>
     /// <returns>Una Task que devuelve la respuesta generada por el manejador.</returns>
     Task<TResponse> Send<TResponse>(IRequest<TResponse> request);
+
+    Task Send(IRequest request);
 }

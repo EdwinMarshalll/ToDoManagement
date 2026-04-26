@@ -18,3 +18,18 @@ public interface IRequestHandler<TRequest, TResponse> where TRequest : IRequest<
     /// <returns>Una tarea que contiene la respuesta generada por el manejador.</returns>
     Task<TResponse> Handle(TRequest request);
 }
+
+/// <summary>
+/// Define un manejador para procesar una solicitud especifica.
+/// </summary>
+/// <typeparam name="TRequest">
+/// Tipo de solicitud que se va a procesar. Debe implementar <see cref="IRequest"/>.
+/// </typeparam>
+public interface IRequestHandler<TRequest> where TRequest : IRequest
+{
+    /// <summary>
+    /// Procesa la solicitud recibida.
+    /// </summary>
+    /// <param name="request">La solicitud que contiene los datos de entrada.</param>
+    Task Handle(TRequest request);
+}

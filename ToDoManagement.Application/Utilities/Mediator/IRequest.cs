@@ -10,3 +10,11 @@ public interface IRequest<TResponse>
 {
 
 }
+
+/// <summary>
+/// Define una solicitud que no regresa nada
+/// </summary>
+public interface IRequest
+{
+
+}
