@@ -3,14 +3,14 @@ using ToDoManagement.Application.Interfaces.Repositories;
 using ToDoManagement.Application.Utilities.Mediator;
 using ToDoManagement.Domain.Entities;
 
-namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
+namespace ToDoManagement.Application.UseCases.Categories.Commands.CreateCategory;
 
-public class UseCaseCreateCategory : IRequestHandler<CreateCategoryCommand, Guid>
+public class CreateCategoryUseCase : IRequestHandler<CreateCategoryCommand, Guid>
 {
     private readonly IRepositoryCategory _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UseCaseCreateCategory(IRepositoryCategory repository, IUnitOfWork unitOfWork)
+    public CreateCategoryUseCase(IRepositoryCategory repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;

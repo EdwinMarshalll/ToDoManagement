@@ -1,6 +1,6 @@
 ﻿using ToDoManagement.Application.Utilities.Mediator;
 
-namespace ToDoManagement.Application.UseCases.Categories.CreateCategory;
+namespace ToDoManagement.Application.UseCases.Categories.Commands.CreateCategory;
 
 public class CreateCategoryCommand : IRequest<Guid>
 {

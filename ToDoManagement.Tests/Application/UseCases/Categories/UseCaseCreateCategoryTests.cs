@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using ToDoManagement.Application.Exceptions;
 using ToDoManagement.Application.Interfaces.Persistence;
 using ToDoManagement.Application.Interfaces.Repositories;
-using ToDoManagement.Application.UseCases.Categories.CreateCategory;
+using ToDoManagement.Application.UseCases.Categories.Commands.CreateCategory;
 using ToDoManagement.Domain.Entities;
 
 namespace ToDoManagement.Tests.Application.UseCases.Categories;
@@ -15,13 +15,13 @@ public class UseCaseCreateCategoryTests
 {
     private IRepositoryCategory _repository;
     private IUnitOfWork _unitOfWork;
-    private UseCaseCreateCategory _useCase;
+    private CreateCategoryUseCase _useCase;
 
     public UseCaseCreateCategoryTests()
     {
         _repository = Substitute.For<IRepositoryCategory>();
         _unitOfWork = Substitute.For<IUnitOfWork>();
-        _useCase = new UseCaseCreateCategory(_repository, _unitOfWork);
+        _useCase = new CreateCategoryUseCase(_repository, _unitOfWork);
     }
 
     [Fact]

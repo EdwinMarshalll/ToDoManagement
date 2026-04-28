@@ -15,3 +15,11 @@ Content-Type: application/json
 {
   "Name" : "Trabajo"
 }
+
+###
+PUT {{ToDoManagement.Api_HostAddress}}/019db778-2fa4-7b09-acdf-97199e3ec3d9
+Content-Type: application/json
+
+{
+  "Name" : "Trabajo - actualizado"
+}

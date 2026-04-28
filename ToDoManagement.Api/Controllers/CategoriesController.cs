@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoManagement.Api.DTOs.Categories;
-using ToDoManagement.Application.UseCases.Categories.CreateCategory;
+using ToDoManagement.Application.UseCases.Categories.Commands.CreateCategory;
+using ToDoManagement.Application.UseCases.Categories.Commands.UpdateCategory;
 using ToDoManagement.Application.UseCases.Categories.Queries.GetCategories;
 using ToDoManagement.Application.UseCases.Categories.Queries.GetCategoryDetail;
 using ToDoManagement.Application.Utilities.Mediator;
@@ -38,6 +39,14 @@ public class CategoriesController : ControllerBase
     public async Task<IActionResult> Post(CreateCategoryDto createCategoryDto)
     {
         var command = new CreateCategoryCommand() { Name = createCategoryDto.Name };
+        await _mediator.Send(command);
+        return Ok();
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, UpdateCategoryDto updateCategoryDto)
+    {
+        var command = new UpdateCategoryCommand() { Id = id, Name = updateCategoryDto.Name };
         await _mediator.Send(command);
         return Ok();
     }

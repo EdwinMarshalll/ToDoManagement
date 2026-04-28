@@ -16,7 +16,7 @@ public class AppTask
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            throw new DomainValidationException($"El {nameof(name)} es requerido");
+            throw new BusinessRuleException($"El {nameof(name)} es requerido");
         }
 
         Id = Guid.CreateVersion7();

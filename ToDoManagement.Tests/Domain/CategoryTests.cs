@@ -12,7 +12,7 @@ public class CategoryTests
         string name = null!;
 
         // Act & Assert
-        Assert.Throws<DomainValidationException>(() =>
+        Assert.Throws<BusinessRuleException>(() =>
         {
             Category category = new (name); 
         });
@@ -25,7 +25,7 @@ public class CategoryTests
         string name = "";
 
         // Act & Assert
-        Assert.Throws<DomainValidationException>(() =>
+        Assert.Throws<BusinessRuleException>(() =>
         {
             Category category = new(name);
         });

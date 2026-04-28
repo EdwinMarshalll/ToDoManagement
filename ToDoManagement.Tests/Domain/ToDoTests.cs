@@ -13,7 +13,7 @@ public class ToDoTests
         Guid categoryId = Guid.NewGuid();
 
         // Act & Assert
-        Assert.Throws<DomainValidationException>(() =>
+        Assert.Throws<BusinessRuleException>(() =>
         {
             AppTask todo = new(name, categoryId);
         });
@@ -27,7 +27,7 @@ public class ToDoTests
         Guid categoryId = Guid.NewGuid();
 
         // Act & Assert
-        Assert.Throws<DomainValidationException>(() =>
+        Assert.Throws<BusinessRuleException>(() =>
         {
             AppTask todo = new(name, categoryId);
         });
